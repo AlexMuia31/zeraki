@@ -18,6 +18,11 @@ import { CommonTypo } from "@/components/Typographies";
 import AnalyticsPie from "@/components/AnalyticsPie";
 import SignupsPie from "@/components/SignupsPie";
 import TimetablePie from "@/components/TimetablePie";
+import AnalyticsBar from "@/components/AnalyticsBar";
+import Test from "@/components/Test";
+import FinanceBar from "@/components/FinanceBar";
+import TimetableBar from "@/components/TimetableBar";
+import InvoicesTable from "@/components/InvoicesTable";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -160,6 +165,16 @@ const Home: NextPageWithLayout = () => {
               </Box>
             </Grid>
           </Grid>
+          <CommonTypo
+            sx={{
+              textAlign: "center",
+              mt: "4%",
+              fontWeight: 600,
+              fontSize: "24px",
+            }}
+          >
+            Targets
+          </CommonTypo>
           <Grid container spacing={2} sx={{ mt: "4%" }}>
             <Grid item xs={12} md={6}>
               <Box>
@@ -195,7 +210,62 @@ const Home: NextPageWithLayout = () => {
               </Box>
             </Grid>
           </Grid>
+          <CommonTypo
+            sx={{
+              textAlign: "center",
+              mt: "7%",
+              mb: "4%",
+              fontWeight: 600,
+              fontSize: "24px",
+            }}
+          >
+            Sign Ups Overview
+          </CommonTypo>
+          <Grid container spacing={2}>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ width: "100%" }}>
+                <CommonTypo sx={{ fontWeight: 600, fontSize: "18px" }}>
+                  Zeraki Analytics
+                </CommonTypo>
+                <CommonTypo sx={{ fontStyle: "italic", mb: "4%" }}>
+                  (uptake by school category)
+                </CommonTypo>
+                <AnalyticsBar />
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <Box sx={{ width: "100%" }}>
+                <CommonTypo sx={{ fontWeight: 600, fontSize: "18px" }}>
+                  Zeraki Finance
+                </CommonTypo>
+                <CommonTypo sx={{ fontStyle: "italic", mb: "4%" }}>
+                  (uptake by school category)
+                </CommonTypo>
+                <FinanceBar />
+              </Box>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <CommonTypo sx={{ fontWeight: 600, fontSize: "18px" }}>
+                Zeraki Timetable
+              </CommonTypo>
+              <CommonTypo sx={{ fontStyle: "italic", mb: "4%" }}>
+                (uptake by school category)
+              </CommonTypo>
+              <TimetableBar />
+            </Grid>
+            <Grid item xs={12}>
+              <Box>
+                <CommonTypo
+                  sx={{ fontWeight: 600, fontSize: "18px", mt: "4%", mb: "4%" }}
+                >
+                  Invoices
+                </CommonTypo>
+                <InvoicesTable />
+              </Box>
+            </Grid>
+          </Grid>
         </Container>
+        <Test />
       </Box>
     </>
   );
