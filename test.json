@@ -1,0 +1,19 @@
+{
+  "schools": [
+    {
+      "id": 1,
+      "name": "Greenwood Primary School",
+      "type": "Primary"
+    },
+    {
+      "id": 2,
+      "name": "Silver Oak Secondary School",
+      "type": "Secondary"
+    },
+    {
+      "id": 3,
+      "name": "Bright Future IGCSE",
+      "type": "IGCSE"
+    }
+  ]
+}

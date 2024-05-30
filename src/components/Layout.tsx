@@ -56,7 +56,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
               )}
             </IconButton>
             <Box>
-              <Image src="/logo.png" width={150} height={40} alt="logo" />
+              <Link href="/">
+                <Image src="/logo.png" width={150} height={40} alt="logo" />
+              </Link>
             </Box>
           </Box>
         </Toolbar>

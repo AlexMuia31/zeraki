@@ -1,0 +1,414 @@
+{
+  "schools": [
+    {
+      "id": 1,
+      "name": "Greenwood Primary School",
+      "type": "Primary",
+      "product": "Zeraki Analytics",
+      "county": "Nairobi",
+      "registrationDate": "2022-01-15",
+      "contactInformation": {
+        "phone": "+254700111222",
+        "email": "contact@greenwoodprimary.co.ke",
+        "address": "123 Greenwood Lane, Nairobi"
+      },
+      "balance": {
+        "invoices": [
+          {
+            "id": "INV001",
+            "amount": 1000,
+            "date": "2023-01-01"
+          },
+          {
+            "id": "INV002",
+            "amount": 1500,
+            "date": "2023-02-01"
+          }
+        ],
+        "collections": [
+          {
+            "id": "COL001",
+            "amount": 800,
+            "date": "2023-01-15",
+            "status": "pending"
+          },
+          {
+            "id": "COL002",
+            "amount": 1200,
+            "date": "2023-02-15",
+            "status": "completed"
+          }
+        ],
+        "totalBalance": 500
+      }
+    },
+    {
+      "id": 2,
+      "name": "Silver Oak Secondary School",
+      "type": "Secondary",
+      "product": "Zeraki Finance",
+      "county": "Mombasa",
+      "registrationDate": "2021-06-20",
+      "contactInformation": {
+        "phone": "+254700333444",
+        "email": "info@silveroaksecondary.co.ke",
+        "address": "456 Silver Oak Road, Mombasa"
+      },
+      "balance": {
+        "invoices": [
+          {
+            "id": "INV003",
+            "amount": 2000,
+            "date": "2023-01-10"
+          },
+          {
+            "id": "INV004",
+            "amount": 2500,
+            "date": "2023-03-01"
+          }
+        ],
+        "collections": [
+          {
+            "id": "COL003",
+            "amount": 1800,
+            "date": "2023-01-25",
+            "status": "pending"
+          },
+          {
+            "id": "COL004",
+            "amount": 2200,
+            "date": "2023-03-10"
+          }
+        ],
+        "totalBalance": 500
+      }
+    },
+    {
+      "id": 3,
+      "name": "Bright Future IGCSE",
+      "type": "IGCSE",
+      "product": "Zeraki Timetable",
+      "county": "Kisumu",
+      "registrationDate": "2020-09-10",
+      "contactInformation": {
+        "phone": "+254700555666",
+        "email": "admin@brightfutureigcse.co.ke",
+        "address": "789 Bright Future Avenue, Kisumu"
+      },
+      "balance": {
+        "invoices": [
+          {
+            "id": "INV005",
+            "amount": 3000,
+            "date": "2023-02-15",
+            "status": "pending"
+          },
+          {
+            "id": "INV006",
+            "amount": 3500,
+            "date": "2023-04-01"
+          }
+        ],
+        "collections": [
+          {
+            "id": "COL005",
+            "amount": 2500,
+            "date": "2023-02-28"
+          },
+          {
+            "id": "COL006",
+            "amount": 3000,
+            "date": "2023-04-15"
+          }
+        ],
+        "totalBalance": 1000
+      }
+    },
+    {
+      "id": 4,
+      "name": "Sunrise Primary School",
+      "type": "Primary",
+      "product": "Zeraki Analytics",
+      "county": "Nakuru",
+      "registrationDate": "2019-05-20",
+      "contactInformation": {
+        "phone": "+254700777888",
+        "email": "info@sunriseprimary.co.ke",
+        "address": "101 Sunrise Street, Nakuru"
+      },
+      "balance": {
+        "invoices": [
+          {
+            "id": "INV007",
+            "amount": 1200,
+            "date": "2023-03-01"
+          },
+          {
+            "id": "INV008",
+            "amount": 1600,
+            "date": "2023-04-01"
+          }
+        ],
+        "collections": [
+          {
+            "id": "COL007",
+            "amount": 1100,
+            "date": "2023-03-15",
+            "status": "completed"
+          },
+          {
+            "id": "COL008",
+            "amount": 1400,
+            "date": "2023-04-15"
+          }
+        ],
+        "totalBalance": 300
+      }
+    },
+    {
+      "id": 5,
+      "name": "Hillcrest Secondary School",
+      "type": "Secondary",
+      "product": "Zeraki Finance",
+      "county": "Eldoret",
+      "registrationDate": "2021-11-05",
+      "contactInformation": {
+        "phone": "+254700999000",
+        "email": "contact@hillcrestsecondary.co.ke",
+        "address": "202 Hillcrest Boulevard, Eldoret"
+      },
+      "balance": {
+        "invoices": [
+          {
+            "id": "INV009",
+            "amount": 1800,
+            "date": "2023-05-01"
+          },
+          {
+            "id": "INV010",
+            "amount": 2200,
+            "date": "2023-06-01"
+          }
+        ],
+        "collections": [
+          {
+            "id": "COL009",
+            "amount": 1700,
+            "date": "2023-05-15"
+          },
+          {
+            "id": "COL010",
+            "amount": 2000,
+            "date": "2023-06-15",
+            "status": "completed"
+          }
+        ],
+        "totalBalance": 300
+      }
+    },
+    {
+      "id": 6,
+      "name": "Lakeside IGCSE",
+      "type": "IGCSE",
+      "product": "Zeraki Timetable",
+      "county": "Kisumu",
+      "registrationDate": "2022-07-10",
+      "contactInformation": {
+        "phone": "+254701111222",
+        "email": "admin@lakesideigcse.co.ke",
+        "address": "303 Lakeside Road, Kisumu"
+      },
+      "balance": {
+        "invoices": [
+          {
+            "id": "INV011",
+            "amount": 3500,
+            "date": "2023-07-01"
+          },
+          {
+            "id": "INV012",
+            "amount": 4000,
+            "date": "2023-08-01"
+          }
+        ],
+        "collections": [
+          {
+            "id": "COL011",
+            "amount": 3300,
+            "date": "2023-07-15"
+          },
+          {
+            "id": "COL012",
+            "amount": 3800,
+            "date": "2023-08-15",
+            "status": "completed"
+          }
+        ],
+        "totalBalance": 400
+      }
+    },
+    {
+      "id": 7,
+      "name": "Rainbow Primary School",
+      "type": "Primary",
+      "product": "Zeraki Analytics",
+      "county": "Thika",
+      "registrationDate": "2018-03-25",
+      "contactInformation": {
+        "phone": "+254701333444",
+        "email": "info@rainbowprimary.co.ke",
+        "address": "404 Rainbow Avenue, Thika"
+      },
+      "balance": {
+        "invoices": [
+          {
+            "id": "INV013",
+            "amount": 1300,
+            "date": "2023-09-01"
+          },
+          {
+            "id": "INV014",
+            "amount": 1700,
+            "date": "2023-10-01"
+          }
+        ],
+        "collections": [
+          {
+            "id": "COL013",
+            "amount": 1200,
+            "date": "2023-09-15"
+          },
+          {
+            "id": "COL014",
+            "amount": 1500,
+            "date": "2023-10-15",
+            "status": "completed"
+          }
+        ],
+        "totalBalance": 300
+      }
+    },
+    {
+      "id": 8,
+      "name": "Mountain View Secondary School",
+      "type": "Secondary",
+      "product": "Zeraki Finance",
+      "county": "Nyeri",
+      "registrationDate": "2020-12-10",
+      "contactInformation": {
+        "phone": "+254701555666",
+        "email": "contact@mountainviewsecondary.co.ke",
+        "address": "505 Mountain View Road, Nyeri"
+      },
+      "balance": {
+        "invoices": [
+          {
+            "id": "INV015",
+            "amount": 2500,
+            "date": "2023-11-01"
+          },
+          {
+            "id": "INV016",
+            "amount": 3000,
+            "date": "2023-12-01"
+          }
+        ],
+        "collections": [
+          {
+            "id": "COL015",
+            "amount": 2400,
+            "date": "2023-11-15"
+          },
+          {
+            "id": "COL016",
+            "amount": 2800,
+            "date": "2023-12-15",
+            "status": "pending"
+          }
+        ],
+        "totalBalance": 300
+      }
+    },
+    {
+      "id": 9,
+      "name": "Harmony IGCSE",
+      "type": "IGCSE",
+      "product": "Zeraki Timetable",
+      "county": "Nairobi",
+      "registrationDate": "2022-03-15",
+      "contactInformation": {
+        "phone": "+254701777888",
+        "email": "admin@harmonyigcse.co.ke",
+        "address": "606 Harmony Lane, Nairobi"
+      },
+      "balance": {
+        "invoices": [
+          {
+            "id": "INV017",
+            "amount": 3800,
+            "date": "2023-05-01"
+          },
+          {
+            "id": "INV018",
+            "amount": 4200,
+            "date": "2023-06-01"
+          }
+        ],
+        "collections": [
+          {
+            "id": "COL017",
+            "amount": 3600,
+            "date": "2023-05-15",
+            "status": "pending"
+          },
+          {
+            "id": "COL018",
+            "amount": 4000,
+            "date": "2023-06-15"
+          }
+        ],
+        "totalBalance": 400
+      }
+    },
+    {
+      "id": 10,
+      "name": "Elite High School",
+      "type": "Secondary",
+      "product": "Zeraki Finance",
+      "county": "Kisumu",
+      "registrationDate": "2021-01-25",
+      "contactInformation": {
+        "phone": "+254701999000",
+        "email": "info@elitehighschool.co.ke",
+        "address": "707 Elite Boulevard, Kisumu"
+      },
+      "balance": {
+        "invoices": [
+          {
+            "id": "INV019",
+            "amount": 2800,
+            "date": "2023-07-01"
+          },
+          {
+            "id": "INV020",
+            "amount": 3200,
+            "date": "2023-08-01"
+          }
+        ],
+        "collections": [
+          {
+            "id": "COL019",
+            "amount": 2700,
+            "date": "2023-07-15"
+          },
+          {
+            "id": "COL020",
+            "amount": 3000,
+            "date": "2023-08-15"
+          }
+        ],
+        "totalBalance": 300
+      }
+    }
+  ]
+}
