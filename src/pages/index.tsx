@@ -39,11 +39,12 @@ const Home: NextPageWithLayout = () => {
         <Container maxWidth="xl">
           <Grid container spacing={2}>
             <Grid item xs={12} sm={4} md={3}>
-              <Box>
+              <Box sx={{ height: "100%" }}>
                 <Card
                   sx={{
                     "&:hover": { background: "#2FA6DE" },
                     borderRadius: "20px",
+                    height: "100%",
                   }}
                 >
                   <CardContent>

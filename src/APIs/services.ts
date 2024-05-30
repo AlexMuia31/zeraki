@@ -1,27 +1,28 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const baseURL = "http://localhost:8080/";
+const baseURL = "https://json-server-e8bi.onrender.com/";
 
 export const zerakiApi = createApi({
   reducerPath: "zerakiApi",
   baseQuery: fetchBaseQuery({ baseUrl: baseURL }),
   endpoints: (builder) => ({
     getSchools: builder.query({
-      query: (name) => "schools",
+      query: (name) => "schools?_embed=collections&_embed=invoices",
     }),
     getSchool: builder.query({
-      query: (id) => `schools/${id}`,
+      query: (id) => `schools/${id}?_embed=collections&_embed=invoices`,
     }),
-    deleteSchool: builder.mutation({
+    deleteCollection: builder.mutation({
       query: (id) => ({
-        url: `schools/${id}`,
+        url: `collections/${id}`,
         method: "DELETE",
       }),
     }),
-    updateSchool: builder.mutation({
-      query: (id) => ({
-        url: `schools/${id}`,
-        method: "PUT",
+    updateCollection: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `collections/${id}`,
+        body,
+        method: "PATCH",
       }),
     }),
   }),
@@ -30,5 +31,6 @@ export const zerakiApi = createApi({
 export const {
   useGetSchoolsQuery,
   useGetSchoolQuery,
-  useDeleteSchoolMutation,
+  useDeleteCollectionMutation,
+  useUpdateCollectionMutation,
 } = zerakiApi;

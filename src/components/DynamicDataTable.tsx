@@ -8,10 +8,10 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
-import InvoicesModal from "./InvoicesModal";
 import { useGetSchoolsQuery } from "@/APIs/services";
 import { GreenButton } from "./Buttons";
 import Link from "next/link";
+import Skeleton from "@mui/material/Skeleton";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -35,23 +35,29 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 const DynamicDataTable = () => {
   const { data, error, isLoading } = useGetSchoolsQuery({});
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <Box sx={{ width: "100%", height: "50vh" }}>
+          <Skeleton sx={{ height: "50vh" }} />
+          <Skeleton animation="wave" />
+          <Skeleton animation={false} />
+        </Box>
+      </div>
+    );
   if (error) return <div>Error loading data</div>;
 
   const rows = data.map((school: any) => {
-    const { id, name, type, balance } = school;
-    const { invoices } = balance;
-
-    // Use the latest invoice for the amount due and due date
-    const latestInvoice = invoices[invoices.length - 1];
-    const amount = latestInvoice?.amount || 0;
-    const date = latestInvoice?.date || "N/A";
+    const { id, name, type, invoices } = school;
+    const latestInvoice = invoices[invoices.length - 1] || {};
+    const amount = latestInvoice.amount || 0;
+    const dueDate = latestInvoice.dueDate || "N/A";
 
     return {
       id,
       name,
       amount,
-      date,
+      dueDate,
       type,
       action: (
         <Link href={`/schools/${id}`} passHref>
@@ -82,7 +88,7 @@ const DynamicDataTable = () => {
               </StyledTableCell>
               <StyledTableCell>{row.name}</StyledTableCell>
               <StyledTableCell align="center">{row.amount}</StyledTableCell>
-              <StyledTableCell align="center">{row.date}</StyledTableCell>
+              <StyledTableCell align="center">{row.dueDate}</StyledTableCell>
               <StyledTableCell align="center">{row.type}</StyledTableCell>
               <StyledTableCell align="center">{row.action}</StyledTableCell>
             </StyledTableRow>
