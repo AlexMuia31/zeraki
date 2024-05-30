@@ -1,4 +1,4 @@
-import { AppBar, Box, Drawer, Toolbar } from "@mui/material";
+import { AppBar, Box, Drawer, IconButton, Toolbar } from "@mui/material";
 import React from "react";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { useTheme } from "@mui/material/styles";
@@ -7,12 +7,12 @@ import List from "@mui/material/List";
 import ListItemButton from "@mui/material/ListItemButton";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
-import Collapse from "@mui/material/Collapse";
-import ExpandLess from "@mui/icons-material/ExpandLess";
-import ExpandMore from "@mui/icons-material/ExpandMore";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import CollectionsIcon from "@mui/icons-material/Collections";
-import SubscriptionsIcon from "@mui/icons-material/Subscriptions";
+import SchoolIcon from "@mui/icons-material/School";
+import Link from "next/link";
+import { useRouter } from "next/router";
+import { Menu } from "@mui/icons-material";
+import CloseIcon from "@mui/icons-material/Close";
 
 const drawerWidth = 260;
 
@@ -34,14 +34,30 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
     setOpenList(!openList);
   };
 
+  //  router to determine the current path
+  const router = useRouter();
+  const currentPath = router.pathname;
+
   return (
     <Box>
       <AppBar
         sx={{ zIndex: (theme) => theme.zIndex.drawer + 1, background: "#fff" }}
       >
         <Toolbar>
-          <Box>
-            <Image src="/logo.png" width={150} height={40} alt="logo" />
+          <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+            <IconButton
+              onClick={handleDrawer}
+              sx={{ display: { xs: "flex", md: "none" } }}
+            >
+              {open ? (
+                <CloseIcon sx={{ color: "#43AB49" }} />
+              ) : (
+                <Menu sx={{ color: "#2FA6DE" }} />
+              )}
+            </IconButton>
+            <Box>
+              <Image src="/logo.png" width={150} height={40} alt="logo" />
+            </Box>
           </Box>
         </Toolbar>
       </AppBar>
@@ -62,14 +78,15 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
       >
         <Toolbar />
         <List component="nav">
-          <>
+          <Link href="/" passHref>
             <ListItemButton
               sx={{
                 "&:hover": { background: "#2FA6DE" },
                 borderRadius: "10px",
+                background: currentPath === "/" ? "#2FA6DE" : "inherit",
+                mb: "4%",
               }}
-              onClick={handleClick}
-              disableGutters
+              onClick={handleDrawer}
             >
               <ListItemIcon>
                 <DashboardIcon sx={{ color: "#fff" }} />
@@ -78,47 +95,27 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                 sx={{ color: "#fff", whiteSpace: "nowrap" }}
                 primary="Dashboard Overview"
               />
-              {openList ? (
-                <ExpandLess sx={{ color: "#fff" }} />
-              ) : (
-                <ExpandMore sx={{ color: "#fff" }} />
-              )}
             </ListItemButton>
-            <Collapse in={openList} timeout="auto" unmountOnExit>
-              <List component="div" disablePadding>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemIcon>
-                    <CollectionsIcon sx={{ color: "#fff" }} />
-                  </ListItemIcon>
-                  <ListItemText sx={{ color: "#fff" }} primary="Collections" />{" "}
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemIcon>
-                    <SubscriptionsIcon sx={{ color: "#fff" }} />
-                  </ListItemIcon>
-                  <ListItemText sx={{ color: "#fff" }} primary="Sign Ups" />{" "}
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemIcon>
-                    <SubscriptionsIcon sx={{ color: "#fff" }} />
-                  </ListItemIcon>
-                  <ListItemText
-                    sx={{ color: "#fff" }}
-                    primary="Total Revenue"
-                  />{" "}
-                </ListItemButton>
-                <ListItemButton sx={{ pl: 4 }}>
-                  <ListItemIcon>
-                    <SubscriptionsIcon sx={{ color: "#fff" }} />
-                  </ListItemIcon>
-                  <ListItemText
-                    sx={{ color: "#fff" }}
-                    primary="Bounced Cheques"
-                  />{" "}
-                </ListItemButton>
-              </List>
-            </Collapse>
-          </>
+          </Link>
+          <Link href="/school_management" passHref>
+            <ListItemButton
+              sx={{
+                "&:hover": { background: "#2FA6DE" },
+                borderRadius: "10px",
+                background:
+                  currentPath === "/school_management" ? "#2FA6DE" : "inherit",
+              }}
+              onClick={handleDrawer}
+            >
+              <ListItemIcon>
+                <SchoolIcon sx={{ color: "#fff" }} />
+              </ListItemIcon>
+              <ListItemText
+                sx={{ color: "#fff", whiteSpace: "nowrap" }}
+                primary="School Management"
+              />
+            </ListItemButton>
+          </Link>
         </List>
       </Drawer>
       <Box
