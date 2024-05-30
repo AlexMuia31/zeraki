@@ -8,6 +8,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import InvoicesModal from "./InvoicesModal";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,17 +34,27 @@ function createData(
   name: string,
   amount: number,
   date: string,
-  action: number
+  action: JSX.Element
 ) {
   return { name, amount, date, action };
 }
 
 const rows = [
-  createData("Wanamgambo Secondary School", 159, "12-11-2024", 24),
-  createData("Kitui School", 237, "13-5-2025", 37),
-  createData("St Charles Lwanga secondary school", 262, "5-10-2024", 24),
-  createData("Migori Boys High School", 305, "4-6-2023", 67),
-  createData("Baringo Boys High School", 356, "4-3-2024", 49),
+  createData(
+    "Wanamgambo Secondary School",
+    159,
+    "12-11-2024",
+    <InvoicesModal />
+  ),
+  createData("Kitui School", 237, "13-5-2025", <InvoicesModal />),
+  createData(
+    "St Charles Lwanga secondary school",
+    262,
+    "5-10-2024",
+    <InvoicesModal />
+  ),
+  createData("Migori Boys High School", 305, "4-6-2023", <InvoicesModal />),
+  createData("Baringo Boys High School", 356, "4-3-2024", <InvoicesModal />),
 ];
 
 const InvoicesTable = () => {
