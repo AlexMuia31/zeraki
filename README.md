@@ -30,3 +30,7 @@ I used [Redux Toolkit query](https://redux-toolkit.js.org/rtk-query/overview) to
 ## Deploy on Vercel
 
 I deployed the project on vercel on this link https://zeraki-nine.vercel.app/
+
+## Screenshot om the school management showing Data
+
+![Screenshot 2024-05-31 at 08 13 10](https://github.com/AlexMuia31/zeraki/assets/52041040/0c6b5ae5-02a7-427f-9e5b-b2699325b825)
