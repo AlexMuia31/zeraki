@@ -24,6 +24,7 @@ import {
 } from "@mui/material";
 import { CommonTypo } from "@/components/Typographies";
 import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
 type Collection = {
   collectionNumber: number;
@@ -300,7 +301,12 @@ const SchoolDetails: NextPageWithLayout = () => {
         autoHideDuration={6000}
         onClose={() => setSnackbarOpen(false)}
         message={snackbarMessage}
-      />
+        sx={{ background: "green" }}
+      >
+        <Alert severity="success" variant="filled">
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Container>
   );
 };
