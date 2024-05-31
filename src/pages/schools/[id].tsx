@@ -4,6 +4,7 @@ import {
   useGetSchoolQuery,
   useDeleteCollectionMutation,
   useUpdateCollectionMutation,
+  useUpdateInvoiceMutation,
 } from "../../APIs/services";
 import type { NextPageWithLayout } from "../_app";
 import Layout from "@/components/Layout";
@@ -21,10 +22,15 @@ import {
   Select,
   MenuItem,
   FormControl,
+  FormControlLabel,
+  Checkbox,
+  Snackbar,
+  Alert,
+  Skeleton,
+  Box,
+  TextField,
 } from "@mui/material";
 import { CommonTypo } from "@/components/Typographies";
-import Snackbar from "@mui/material/Snackbar";
-import Alert from "@mui/material/Alert";
 
 type Collection = {
   collectionNumber: number;
@@ -74,12 +80,25 @@ const SchoolDetails: NextPageWithLayout = () => {
     useDeleteCollectionMutation();
   const [updateCollection, { isLoading: updateLoading, error: updateError }] =
     useUpdateCollectionMutation();
+  const [updateInvoice] = useUpdateInvoiceMutation();
 
   const [editableStatuses, setEditableStatuses] = useState<{
     [key: number]: string;
   }>({});
+  const [editableInvoices, setEditableInvoices] = useState<{
+    [key: string]: Invoice;
+  }>({});
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading)
+    return (
+      <div>
+        <Box sx={{ width: "100%", height: "50vh" }}>
+          <Skeleton sx={{ height: "50vh" }} />
+          <Skeleton animation="wave" />
+          <Skeleton animation={false} />
+        </Box>
+      </div>
+    );
   if (error) return <div>Error loading data</div>;
 
   const {
@@ -99,7 +118,47 @@ const SchoolDetails: NextPageWithLayout = () => {
   };
 
   const handleUpdateInvoice = (invoiceId: string, newData: any) => {
-    updateCollection({ id: invoiceId, body: newData });
+    updateInvoice({ id: invoiceId, body: newData }).then(() => {
+      setSnackbarMessage("Invoice updated successfully");
+      setSnackbarOpen(true);
+    });
+  };
+
+  const handleEditInvoice = (invoice: Invoice) => {
+    setEditableInvoices({
+      ...editableInvoices,
+      [invoice.invoiceNumber]: invoice,
+    });
+  };
+
+  const handleInvoiceChange = (
+    invoiceNumber: string,
+    field: string,
+    value: string | number
+  ) => {
+    setEditableInvoices({
+      ...editableInvoices,
+      [invoiceNumber]: {
+        ...editableInvoices[invoiceNumber],
+        [field]: value,
+      },
+    });
+  };
+
+  const handleSaveInvoice = (invoiceNumber: string) => {
+    const updatedInvoice = editableInvoices[invoiceNumber];
+    handleUpdateInvoice(invoiceNumber, updatedInvoice);
+    setEditableInvoices((prev) => {
+      const { [invoiceNumber]: _, ...rest } = prev;
+      return rest;
+    });
+  };
+
+  const handleCancelEditInvoice = (invoiceNumber: string) => {
+    setEditableInvoices((prev) => {
+      const { [invoiceNumber]: _, ...rest } = prev;
+      return rest;
+    });
   };
 
   const handleStatusChange = (collectionId: number, newStatus: string) => {
@@ -121,14 +180,15 @@ const SchoolDetails: NextPageWithLayout = () => {
     }
   };
 
-  const handleFilterChange = (event: React.ChangeEvent<{ value: unknown }>) => {
-    const value = event.target.value as string;
-    if (value === "completed") {
-      setCompletedFilter(!completedFilter);
-    } else if (value === "pending") {
-      setPendingFilter(!pendingFilter);
+  const filteredInvoices = invoices.filter((invoice) => {
+    if (completedFilter && invoice.completionStatus !== "Completed") {
+      return false;
     }
-  };
+    if (pendingFilter && invoice.completionStatus !== "Pending") {
+      return false;
+    }
+    return true;
+  });
 
   return (
     <Container maxWidth="xl">
@@ -196,6 +256,28 @@ const SchoolDetails: NextPageWithLayout = () => {
       </TableContainer>
 
       {/* Invoice Table */}
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={completedFilter}
+            onChange={() => setCompletedFilter(!completedFilter)}
+            name="completedFilter"
+            color="primary"
+          />
+        }
+        label="Completed"
+      />
+      <FormControlLabel
+        control={
+          <Checkbox
+            checked={pendingFilter}
+            onChange={() => setPendingFilter(!pendingFilter)}
+            name="pendingFilter"
+            color="primary"
+          />
+        }
+        label="Pending"
+      />
       <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
         <Table sx={{ minWidth: 1500 }}>
           <TableHead>
@@ -216,20 +298,101 @@ const SchoolDetails: NextPageWithLayout = () => {
                 Completion Status
               </TableCell>
               <TableCell sx={{ fontWeight: "bold" }}>Days Until Due</TableCell>
+              <TableCell sx={{ fontWeight: "bold" }}>Actions</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {invoices.map((invoice: Invoice) => (
+            {filteredInvoices.map((invoice: Invoice) => (
               <TableRow key={invoice.invoiceNumber}>
                 <TableCell>{invoice.invoiceNumber}</TableCell>
-                <TableCell>{invoice.invoiceItem}</TableCell>
+                <TableCell>
+                  {editableInvoices[invoice.invoiceNumber] ? (
+                    <TextField
+                      value={
+                        editableInvoices[invoice.invoiceNumber].invoiceItem
+                      }
+                      onChange={(e) =>
+                        handleInvoiceChange(
+                          invoice.invoiceNumber,
+                          "invoiceItem",
+                          e.target.value
+                        )
+                      }
+                    />
+                  ) : (
+                    invoice.invoiceItem
+                  )}
+                </TableCell>
                 <TableCell>{invoice.creationDate}</TableCell>
-                <TableCell>{invoice.dueDate}</TableCell>
-                <TableCell>{invoice.amount}</TableCell>
+                <TableCell>
+                  {editableInvoices[invoice.invoiceNumber] ? (
+                    <TextField
+                      type="date"
+                      value={editableInvoices[invoice.invoiceNumber].dueDate}
+                      onChange={(e) =>
+                        handleInvoiceChange(
+                          invoice.invoiceNumber,
+                          "dueDate",
+                          e.target.value
+                        )
+                      }
+                    />
+                  ) : (
+                    invoice.dueDate
+                  )}
+                </TableCell>
+                <TableCell>
+                  {editableInvoices[invoice.invoiceNumber] ? (
+                    <TextField
+                      type="number"
+                      value={editableInvoices[invoice.invoiceNumber].amount}
+                      onChange={(e) =>
+                        handleInvoiceChange(
+                          invoice.invoiceNumber,
+                          "amount",
+                          parseFloat(e.target.value)
+                        )
+                      }
+                    />
+                  ) : (
+                    invoice.amount
+                  )}
+                </TableCell>
                 <TableCell>{invoice.paidAmount}</TableCell>
                 <TableCell>{invoice.balance}</TableCell>
                 <TableCell>{invoice.completionStatus}</TableCell>
                 <TableCell>{invoice.daysUntilDue}</TableCell>
+                <TableCell>
+                  {editableInvoices[invoice.invoiceNumber] ? (
+                    <>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        onClick={() => handleSaveInvoice(invoice.invoiceNumber)}
+                      >
+                        Save
+                      </Button>
+                      <Button
+                        variant="contained"
+                        color="secondary"
+                        onClick={() =>
+                          handleCancelEditInvoice(invoice.invoiceNumber)
+                        }
+                        sx={{ marginLeft: 1 }}
+                      >
+                        Cancel
+                      </Button>
+                    </>
+                  ) : (
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() => handleEditInvoice(invoice)}
+                    >
+                      Edit
+                    </Button>
+                  )}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>
@@ -241,16 +404,16 @@ const SchoolDetails: NextPageWithLayout = () => {
         <Table sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
-              <TableCell colSpan={4}>
+              <TableCell colSpan={5}>
                 <CommonTypo sx={{ fontWeight: 700 }}>Collections</CommonTypo>
               </TableCell>
             </TableRow>
             <TableRow>
-              <TableCell>ID</TableCell>
-              <TableCell>Invoice Number</TableCell>
-              <TableCell>Amount</TableCell>
-              <TableCell>Date</TableCell>
-              <TableCell>Status</TableCell>
+              <TableCell sx={{ fontWeight: 700 }}>ID</TableCell>
+              <TableCell sx={{ fontWeight: 700 }}>Invoice Number</TableCell>
+              <TableCell sx={{ fontWeight: 700 }}>Amount</TableCell>
+              <TableCell sx={{ fontWeight: 700 }}>Date</TableCell>
+              <TableCell sx={{ fontWeight: 700 }}>Status</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>

@@ -25,6 +25,13 @@ export const zerakiApi = createApi({
         method: "PATCH",
       }),
     }),
+    updateInvoice: builder.mutation({
+      query: ({ id, body }) => ({
+        url: `invoices/${id}`,
+        body,
+        method: "PATCH",
+      }),
+    }),
   }),
 });
 
@@ -33,4 +40,5 @@ export const {
   useGetSchoolQuery,
   useDeleteCollectionMutation,
   useUpdateCollectionMutation,
+  useUpdateInvoiceMutation,
 } = zerakiApi;
