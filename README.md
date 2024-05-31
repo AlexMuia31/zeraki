@@ -34,3 +34,14 @@ I deployed the project on vercel on this link https://zeraki-nine.vercel.app/
 ## Screenshot om the school management showing Data
 
 ![Screenshot 2024-05-31 at 08 13 10](https://github.com/AlexMuia31/zeraki/assets/52041040/0c6b5ae5-02a7-427f-9e5b-b2699325b825)
+
+
+## Screenshot of the detail page for a school
+
+![Screenshot 2024-05-31 at 08 13 38](https://github.com/Nzomzy/EnvironmentBackend/assets/52041040/99de6f4d-3d0b-47e8-9b8c-a815d0cc6391)
+
+## Screenshot of enabling the user to edit
+![Screenshot 2024-05-31 at 08 14 11](https://github.com/Nzomzy/EnvironmentBackend/assets/52041040/7e68183d-af31-4457-a7b9-4d03b48d3a2d)
+
+![Screenshot 2024-05-31 at 08 14 32](https://github.com/Nzomzy/EnvironmentBackend/assets/52041040/84882cac-9afe-447d-9df4-f5e5e239b8da)
+
