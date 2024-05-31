@@ -20,6 +20,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 The Dashboard Overview does not have Dynamic Data.
 The School Management route has Dynamic data put in tables and the whole app is responsive.
+The tables are scrollable. You can scroll left to right and bak on mobile
 
 ## Tech stack used
 
