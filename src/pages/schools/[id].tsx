@@ -196,7 +196,7 @@ const SchoolDetails: NextPageWithLayout = () => {
 
       {/* Invoice Table */}
       <TableContainer component={Paper} sx={{ marginBottom: "20px" }}>
-        <Table sx={{ minWidth: 500 }}>
+        <Table sx={{ minWidth: 1500 }}>
           <TableHead>
             <TableRow>
               <TableCell colSpan={10}>
@@ -237,7 +237,7 @@ const SchoolDetails: NextPageWithLayout = () => {
 
       {/* Collections Table */}
       <TableContainer component={Paper}>
-        <Table sx={{ minWidth: 500 }}>
+        <Table sx={{ minWidth: 700 }}>
           <TableHead>
             <TableRow>
               <TableCell colSpan={4}>
